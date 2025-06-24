@@ -211,3 +211,21 @@ Button(frame_klient, text="Dodaj klienta", command=dodaj_klienta).pack()
 Button(frame_klient, text="Usuń klienta", command=usun_klienta).pack()
 listbox_klienci = Listbox(frame_klient, width=30)
 listbox_klienci.pack()
+
+# === MAPA KONTROLA ===
+Label(frame_kontrola_mapy, text="Wybierz sieć:").grid(row=0, column=0, padx=5)
+combobox_siec_na_mapie = ttk.Combobox(frame_kontrola_mapy, width=25)
+combobox_siec_na_mapie.grid(row=0, column=1)
+
+Button(frame_kontrola_mapy, text="Mapa wszystkich sieci", command=pokaz_wszystkie_sieci).grid(row=1, column=0, padx=5, pady=5)
+Button(frame_kontrola_mapy, text="Mapa operatorów", command=pokaz_wszystkich_operatorow).grid(row=1, column=1, padx=5, pady=5)
+Button(frame_kontrola_mapy, text="Klienci wybranej sieci", command=pokaz_klientow_sieci).grid(row=1, column=2, padx=5, pady=5)
+Button(frame_kontrola_mapy, text="Operatorzy wybranej sieci", command=pokaz_operatorow_sieci).grid(row=1, column=3, padx=5, pady=5)
+
+# === MAPA ===
+map_widget = tkintermapview.TkinterMapView(frame_mapa, width=1150, height=500, corner_radius=5)
+map_widget.set_position(52.23, 21.0)
+map_widget.set_zoom(6)
+map_widget.pack()
+
+root.mainloop()
