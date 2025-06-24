@@ -169,3 +169,16 @@ frame_kontrola_mapy.grid(row=1, column=0, columnspan=3, pady=10)
 
 frame_mapa = Frame(root)
 frame_mapa.grid(row=2, column=0, columnspan=3)
+
+# === SIEĆ ===
+Label(frame_siec, text="Dodaj sieć dronów").pack()
+Label(frame_siec, text="Nazwa:").pack()
+entry_nazwa_sieci = Entry(frame_siec)
+entry_nazwa_sieci.pack()
+Label(frame_siec, text="Lokalizacja (Wikipedia):").pack()
+entry_lokalizacja_sieci = Entry(frame_siec)
+entry_lokalizacja_sieci.pack()
+Button(frame_siec, text="Dodaj sieć", command=dodaj_siec_z_odswiezeniem).pack()
+Button(frame_siec, text="Usuń sieć", command=usun_siec).pack()
+listbox_sieci = Listbox(frame_siec, width=30)
+listbox_sieci.pack()
