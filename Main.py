@@ -139,3 +139,13 @@ def usun_klienta():
         klienci[index].marker.delete()
         klienci.pop(index)
         listbox_klienci.delete(index)
+
+# === COMBOBOXY ODSWIEZANIE ===
+def odswiez_siec_dla_operatora():
+    combobox_siec_dla_operatora['values'] = [s.nazwa for s in sieci_dronow]
+
+def odswiez_siec_dla_klienta():
+    combobox_siec_dla_klienta['values'] = [s.nazwa for s in sieci_dronow]
+
+def odswiez_siec_na_mapie():
+    combobox_siec_na_mapie['values'] = [s.nazwa for s in sieci_dronow]
