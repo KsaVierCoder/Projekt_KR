@@ -101,3 +101,15 @@ def usun_siec():
         sieci_dronow[index].marker.delete()
         sieci_dronow.pop(index)
         listbox_sieci.delete(index)
+
+def dodaj_operatora():
+    imie = entry_imie_operatora.get()
+    nazwisko = entry_nazwisko_operatora.get()
+    idx = combobox_siec_dla_operatora.current()
+    if idx >= 0:
+        siec = sieci_dronow[idx]
+        operator = OperatorDrona(imie, nazwisko, siec)
+        operatorzy.append(operator)
+        listbox_operatorzy.insert(END, f"{operator.imie} {operator.nazwisko}")
+        entry_imie_operatora.delete(0, END)
+        entry_nazwisko_operatora.delete(0, END)
