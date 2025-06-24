@@ -121,3 +121,13 @@ def usun_operatora():
         operatorzy[index].marker.delete()
         operatorzy.pop(index)
         listbox_operatorzy.delete(index)
+
+def dodaj_klienta():
+    imie = entry_imie_klienta.get()
+    idx = combobox_siec_dla_klienta.current()
+    if idx >= 0:
+        siec = sieci_dronow[idx]
+        klient = Klient(imie, siec)
+        klienci.append(klient)
+        listbox_klienci.insert(END, imie)
+        entry_imie_klienta.delete(0, END)
