@@ -149,3 +149,23 @@ def odswiez_siec_dla_klienta():
 
 def odswiez_siec_na_mapie():
     combobox_siec_na_mapie['values'] = [s.nazwa for s in sieci_dronow]
+
+# === GUI ===
+root = Tk()
+root.geometry("1200x800")
+root.title("System zarządzania siecią lotów dronów")
+
+frame_siec = Frame(root)
+frame_siec.grid(row=0, column=0, padx=10, pady=10, sticky=N)
+
+frame_operator = Frame(root)
+frame_operator.grid(row=0, column=1, padx=10, pady=10, sticky=N)
+
+frame_klient = Frame(root)
+frame_klient.grid(row=0, column=2, padx=10, pady=10, sticky=N)
+
+frame_kontrola_mapy = Frame(root)
+frame_kontrola_mapy.grid(row=1, column=0, columnspan=3, pady=10)
+
+frame_mapa = Frame(root)
+frame_mapa.grid(row=2, column=0, columnspan=3)
