@@ -40,3 +40,4 @@ class Klient:
         self.siec = siec
         self.wspolrzedne = siec.wspolrzedne
         self.marker = map_widget.set_marker(self.wspolrzedne[0], self.wspolrzedne[1], text=f"Klient: {self.imie}")
+
