@@ -77,6 +77,7 @@ def pokaz_operatorow_sieci():
         for o in operatorzy:
             if o.siec == siec:
                 o.marker = map_widget.set_marker(o.wspolrzedne[0], o.wspolrzedne[1], text=f"Operator: {o.imie} {o.nazwisko}")
+
 # === FUNKCJE LIST ===
 def dodaj_siec_z_odswiezeniem():
     dodaj_siec()
@@ -92,3 +93,11 @@ def dodaj_siec():
     listbox_sieci.insert(END, f"{siec.nazwa} ({siec.lokalizacja})")
     entry_nazwa_sieci.delete(0, END)
     entry_lokalizacja_sieci.delete(0, END)
+
+def usun_siec():
+    idx = listbox_sieci.curselection()
+    if idx:
+        index = idx[0]
+        sieci_dronow[index].marker.delete()
+        sieci_dronow.pop(index)
+        listbox_sieci.delete(index)
