@@ -131,3 +131,11 @@ def dodaj_klienta():
         klienci.append(klient)
         listbox_klienci.insert(END, imie)
         entry_imie_klienta.delete(0, END)
+
+def usun_klienta():
+    idx = listbox_klienci.curselection()
+    if idx:
+        index = idx[0]
+        klienci[index].marker.delete()
+        klienci.pop(index)
+        listbox_klienci.delete(index)
