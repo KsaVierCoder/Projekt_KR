@@ -139,3 +139,93 @@ def usun_klienta():
         klienci[index].marker.delete()
         klienci.pop(index)
         listbox_klienci.delete(index)
+
+# === COMBOBOXY ODSWIEZANIE ===
+def odswiez_siec_dla_operatora():
+    combobox_siec_dla_operatora['values'] = [s.nazwa for s in sieci_dronow]
+
+def odswiez_siec_dla_klienta():
+    combobox_siec_dla_klienta['values'] = [s.nazwa for s in sieci_dronow]
+
+def odswiez_siec_na_mapie():
+    combobox_siec_na_mapie['values'] = [s.nazwa for s in sieci_dronow]
+
+# === GUI ===
+root = Tk()
+root.geometry("1200x800")
+root.title("System zarządzania siecią lotów dronów")
+
+frame_siec = Frame(root)
+frame_siec.grid(row=0, column=0, padx=10, pady=10, sticky=N)
+
+frame_operator = Frame(root)
+frame_operator.grid(row=0, column=1, padx=10, pady=10, sticky=N)
+
+frame_klient = Frame(root)
+frame_klient.grid(row=0, column=2, padx=10, pady=10, sticky=N)
+
+frame_kontrola_mapy = Frame(root)
+frame_kontrola_mapy.grid(row=1, column=0, columnspan=3, pady=10)
+
+frame_mapa = Frame(root)
+frame_mapa.grid(row=2, column=0, columnspan=3)
+
+# === SIEĆ ===
+Label(frame_siec, text="Dodaj sieć dronów").pack()
+Label(frame_siec, text="Nazwa:").pack()
+entry_nazwa_sieci = Entry(frame_siec)
+entry_nazwa_sieci.pack()
+Label(frame_siec, text="Lokalizacja (Wikipedia):").pack()
+entry_lokalizacja_sieci = Entry(frame_siec)
+entry_lokalizacja_sieci.pack()
+Button(frame_siec, text="Dodaj sieć", command=dodaj_siec_z_odswiezeniem).pack()
+Button(frame_siec, text="Usuń sieć", command=usun_siec).pack()
+listbox_sieci = Listbox(frame_siec, width=30)
+listbox_sieci.pack()
+
+# === OPERATORZY ===
+Label(frame_operator, text="Dodaj operatora").pack()
+Label(frame_operator, text="Imię:").pack()
+entry_imie_operatora = Entry(frame_operator)
+entry_imie_operatora.pack()
+Label(frame_operator, text="Nazwisko:").pack()
+entry_nazwisko_operatora = Entry(frame_operator)
+entry_nazwisko_operatora.pack()
+Label(frame_operator, text="Sieć:").pack()
+combobox_siec_dla_operatora = ttk.Combobox(frame_operator)
+combobox_siec_dla_operatora.pack()
+Button(frame_operator, text="Dodaj operatora", command=dodaj_operatora).pack()
+Button(frame_operator, text="Usuń operatora", command=usun_operatora).pack()
+listbox_operatorzy = Listbox(frame_operator, width=30)
+listbox_operatorzy.pack()
+
+# === KLIENCI ===
+Label(frame_klient, text="Dodaj klienta").pack()
+Label(frame_klient, text="Imię:").pack()
+entry_imie_klienta = Entry(frame_klient)
+entry_imie_klienta.pack()
+Label(frame_klient, text="Sieć:").pack()
+combobox_siec_dla_klienta = ttk.Combobox(frame_klient)
+combobox_siec_dla_klienta.pack()
+Button(frame_klient, text="Dodaj klienta", command=dodaj_klienta).pack()
+Button(frame_klient, text="Usuń klienta", command=usun_klienta).pack()
+listbox_klienci = Listbox(frame_klient, width=30)
+listbox_klienci.pack()
+
+# === MAPA KONTROLA ===
+Label(frame_kontrola_mapy, text="Wybierz sieć:").grid(row=0, column=0, padx=5)
+combobox_siec_na_mapie = ttk.Combobox(frame_kontrola_mapy, width=25)
+combobox_siec_na_mapie.grid(row=0, column=1)
+
+Button(frame_kontrola_mapy, text="Mapa wszystkich sieci", command=pokaz_wszystkie_sieci).grid(row=1, column=0, padx=5, pady=5)
+Button(frame_kontrola_mapy, text="Mapa operatorów", command=pokaz_wszystkich_operatorow).grid(row=1, column=1, padx=5, pady=5)
+Button(frame_kontrola_mapy, text="Klienci wybranej sieci", command=pokaz_klientow_sieci).grid(row=1, column=2, padx=5, pady=5)
+Button(frame_kontrola_mapy, text="Operatorzy wybranej sieci", command=pokaz_operatorow_sieci).grid(row=1, column=3, padx=5, pady=5)
+
+# === MAPA ===
+map_widget = tkintermapview.TkinterMapView(frame_mapa, width=1150, height=500, corner_radius=5)
+map_widget.set_position(52.23, 21.0)
+map_widget.set_zoom(6)
+map_widget.pack()
+
+root.mainloop()
