@@ -113,3 +113,11 @@ def dodaj_operatora():
         listbox_operatorzy.insert(END, f"{operator.imie} {operator.nazwisko}")
         entry_imie_operatora.delete(0, END)
         entry_nazwisko_operatora.delete(0, END)
+
+def usun_operatora():
+    idx = listbox_operatorzy.curselection()
+    if idx:
+        index = idx[0]
+        operatorzy[index].marker.delete()
+        operatorzy.pop(index)
+        listbox_operatorzy.delete(index)
